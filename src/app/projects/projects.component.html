@@ -1,0 +1,53 @@
+@if (show) {
+<div class="modal-overlay">
+  <div class="modal-content">
+    <div class="img-wrapper">
+      <img [src]="selectedProject?.ImgSrc" [alt]="selectedProject?.Title" />
+    </div>
+    <div>
+      <h3>{{ selectedProject?.Title }}</h3>
+      <p>{{ selectedProject?.Description }}</p>
+      <div class="mb-3">
+        <strong>Technologies:</strong>
+        @for (t of selectedProject?.Tech; track $index) {
+        <span class="badge bg-secondary me-1 ms-1">
+          {{ t }}
+        </span>
+        }
+      </div>
+
+      <button class="btn btn-primary mt-3" (click)="closeModal()">Close</button>
+    </div>
+  </div>
+</div>
+
+}
+<div class="my-bg p-5">
+  <div class="container mt-2">
+    <h2 class="text-center mb-4 text-white">My Projects</h2>
+
+    <div class="row g-4">
+      @for (project of projects; track $index) {
+      <div class="col-xl-4 col-lg-4 col-md-6">
+        <div
+          class="card project-card my-animation"
+          (click)="openModal(project)"
+        >
+          <div class="ratio ratio-16x9">
+            <img
+              [src]="project.ImgSrc"
+              class="w-100 h-100 rounded-top"
+              style="object-fit: cover"
+              [alt]="project.Title"
+            />
+          </div>
+
+          <div class="card-body">
+            <h6 class="card-title">{{ project.Title }}</h6>
+          </div>
+        </div>
+      </div>
+      }
+    </div>
+  </div>
+</div>
